@@ -76,7 +76,7 @@ class EmmetParser {
 
   private parseChildTerm(terminators: Set<string>): EmmetNode[] {
     let parents = this.parsePrimary(terminators);
-    parents = this.applyMultiplier(parents);
+    const multiplier = this.consumeMultiplier();
 
     while (true) {
       this.skipWhitespace();
@@ -92,6 +92,10 @@ class EmmetParser {
         ...parent,
         children: cloneNodes(children),
       }));
+    }
+
+    if (multiplier > 1) {
+      parents = repeatNodes(parents, multiplier);
     }
 
     return parents;
@@ -270,10 +274,10 @@ class EmmetParser {
     return value;
   }
 
-  private applyMultiplier(nodes: EmmetNode[]): EmmetNode[] {
+  private consumeMultiplier(): number {
     this.skipWhitespace();
     if (this.peek() !== '*') {
-      return nodes;
+      return 1;
     }
 
     this.pos++;
@@ -281,7 +285,7 @@ class EmmetParser {
     if (count <= 0) {
       throw this.error('Multiplier must be greater than zero');
     }
-    return repeatNodes(nodes, count);
+    return count;
   }
 
   private consumeNumber(): number {
