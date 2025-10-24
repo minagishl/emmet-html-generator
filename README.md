@@ -8,8 +8,8 @@ This single-page application expands Emmet shorthand into formatted HTML in real
 
 ## Features
 
-- Real-time Emmet expansion with formatted HTML output
-- Supports IDs, classes, attributes, text nodes, grouping, siblings (`+`), nesting (`>`), multipliers (`*`), and numeric placeholders (`$`)
+- Real-time Emmet expansion with formatted HTML output powered by the official [emmet](https://www.npmjs.com/package/emmet) package
+- Supports full Emmet syntax including IDs, classes, attributes, text nodes, grouping, siblings (`+`), nesting (`>`), climb-up (`^`), multipliers (`*`), and numeric placeholders (`$`)
 - One-click copy button for the generated markup
 - Secure iframe sandbox for live HTML preview
 - Quick example shortcuts to explore common Emmet patterns
@@ -25,19 +25,18 @@ Open the printed local URL (usually <http://localhost:5173>) in your browser to 
 
 ## Supported Emmet Syntax
 
+This tool uses the official [emmet](https://www.npmjs.com/package/emmet) package, which supports the complete Emmet syntax:
+
 - Element names and implicit `div` elements (e.g., `.class`, `#id`)
 - Class (`.`) and ID (`#`) shortcuts
 - Attributes (`[type="email"]`, etc.)
-- Text nodes (`{Hello}`) including escaped braces (`\{` and `\}`)
-- Child (`>`) and sibling (`+`) combinators
+- Text nodes (`{Hello}`)
+- Child (`>`), sibling (`+`), and climb-up (`^`) operators
 - Grouping with parentheses (`(...)`)
-- Multipliers (`*3`) and numeric substitution with `$` (supports zero padding such as `item$$`)
-
-### Not Yet Implemented
-
-- Climb-up operator (`^`)
+- Multipliers (`*3`) with numeric substitution (`$`) and zero padding (`$$`)
 - Custom multiplier start indexes (`@-`, `@+`, etc.)
-- Text transforms (e.g., `|t`)
+
+For more details, refer to the [Emmet documentation](https://docs.emmet.io/abbreviations/syntax/)
 
 ## Available Scripts
 
